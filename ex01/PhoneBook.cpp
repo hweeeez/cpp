@@ -25,8 +25,9 @@ void    DisplaySearch(PhoneBook& pb)
     int index = -1;
     std::cout << "Entry: ";
     std::getline(std::cin >> std::ws, ind);
-    index = std::stoi(ind.c_str(), NULL, 10);
-    if (index > 8 || index < 1)
+    //index = std::stoi(ind.c_str(), NULL, 10);
+    index = strtoll(ind.c_str(), NULL, 10);
+    if (index < 1 || index > 8)
         std::cout << "Invalid number!" << '\n';
     else
     {
@@ -82,12 +83,28 @@ int    MakeContact(PhoneBook& pb)
     std::cout << "Phone Number: ";
     std::getline(std::cin >> std::ws, number);
     const char *cstr = number.c_str();
-    num = strtoll(cstr, NULL, 10);
-    if (num == 0)
+    try 
     {
-        std::cout << "Invalid number!" << '\n';
-        return (0);
-    }
+		int value = std::stoi(cstr);
+		std::cout << value << '\n';
+		if (value < 0)
+		{
+		    std::cout << "Invalid number!" << '\n';
+        	return (0);
+		}
+		} catch (const std::invalid_argument& e) {
+			std::cout << "Invalid number!" << '\n';
+		    return (0);
+		} catch (const std::out_of_range& e) {
+			std::cout << "Invalid number!" << '\n';
+		    return (0);
+		}
+    //num = strtoll(cstr, NULL, 10);
+    //if (num == 0 || num < 0)
+    //{
+    //    std::cout << "Invalid number!" << '\n';
+      //  return (0);
+    //}
     std::cout << "Darkest Secret: ";
     std::getline(std::cin >> std::ws, secret);
     AddContact(pb, Contact(first, second, nickname, num, secret));
