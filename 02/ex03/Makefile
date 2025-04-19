@@ -1,15 +1,15 @@
-NAME = PhoneBook
-srcfiles := PhoneBook.cpp Contact.cpp
+NAME = ex03
+srcfiles := Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(objfiles)
-	g++ $(CFLAGS) $(objfiles) -o $(NAME)
+	c++ $(CFLAGS) $(objfiles) -o $(NAME)
 
-%.o: %.c
-	g++ $(CFLAGS) -c $< -o $@
+%.o: %.cpp
+	c++ $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(objfiles)
