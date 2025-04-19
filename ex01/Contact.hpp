@@ -14,39 +14,14 @@ private:
 	std::string secret;
 public:
 	int	index;
-	Contact() : index(-1)
-	{
-
-	};
-	Contact(std::string first, std::string last, std::string nick, int num, std::string sec)
-		: firstname(first), lastname(last), nickname(nick), number(num), secret(sec), index(-1)
-	{
-		
-	};
-	void SetIndex(int i)
-	{
-		index = i;
-	}
-	const std::string firstName()
-	{
-		return firstname;
-	}
-	const std::string lastName()
-	{
-		return lastname;
-	}
-	const std::string nickName()
-	{
-		return nickname;
-	}
-	const std::string Secret()
-	{
-		return secret;
-	}
-	const int Number()
-	{
-		return number;
-	}
+	Contact();
+	Contact(std::string first, std::string last, std::string nick, int num, std::string sec);
+	void SetIndex(int i);
+	const std::string firstName();
+	const std::string lastName();
+	const std::string nickName();
+	const std::string Secret();
+	const int Number();
 };
 
 #endif

@@ -1,7 +1,7 @@
 NAME = PhoneBook
-srcfiles := PhoneBook.cpp
+srcfiles := PhoneBook.cpp Contact.cpp
 objfiles := $(srcfiles:.cpp=.o)
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 

@@ -1,4 +1,10 @@
 #include "PhoneBook.hpp"
+#include <limits>
+
+PhoneBook::PhoneBook():oldest(0)
+{
+    
+}
 
 std::string truncate(std::string str)
 {
@@ -8,7 +14,8 @@ std::string truncate(std::string str)
     }
     return str;
 }
-void    DisplaySearch(PhoneBook& pb)
+
+bool    DisplaySearch(PhoneBook& pb)
 {
     for (int i = 0; i < 8; i++)
     {
@@ -24,11 +31,11 @@ void    DisplaySearch(PhoneBook& pb)
     std::string ind;
     int index = -1;
     std::cout << "Entry: ";
-    std::getline(std::cin >> std::ws, ind);
-    //index = std::stoi(ind.c_str(), NULL, 10);
+    if (!std::getline(std::cin >> std::ws, ind))
+        return false;
     index = strtoll(ind.c_str(), NULL, 10);
-    if (index < 1 || index > 8)
-        std::cout << "Invalid number!" << '\n';
+    if (index < 1 || index > 8 || pb.contacts[index - 1].index == -1)
+        std::cout << "Invalid Entry!" << '\n';
     else
     {
         Contact c = pb.contacts[index - 1];
@@ -36,8 +43,9 @@ void    DisplaySearch(PhoneBook& pb)
         std::cout << "Last Name: " << c.lastName() << '\n';
         std::cout << "Nickname: " << c.nickName() << '\n';
         std::cout << "Phone Number: " << c.Number() << '\n';
-        std::cout << "Secret: " << c.Secret() << '\n';
+        std::cout << "Darkest Secret: " << c.Secret() << '\n';
     }
+    return true;
 }
 
 int AddContact(PhoneBook& phonebook, Contact contact)
@@ -64,6 +72,18 @@ int AddContact(PhoneBook& phonebook, Contact contact)
     return (0);
 }
 
+bool IsValidNumber(const std::string str)
+{
+    int len = str.size();
+
+    for (int i = 0; i < len; i++)
+    {
+        if (!std::isdigit((unsigned char)(str[i])))
+            return false;
+    }
+    return true;
+}
+
 int    MakeContact(PhoneBook& pb)
 {
     std::string first;
@@ -75,39 +95,26 @@ int    MakeContact(PhoneBook& pb)
 
     std::cout << "Adding new contact" << '\n';
     std::cout << "First Name: ";
-    std::getline(std::cin >> std::ws, first);
+    if (!std::getline(std::cin >> std::ws, first))
+        return (0);
     std::cout << "Second Name: ";
-    std::getline(std::cin >> std::ws, second);
+    if (!std::getline(std::cin >> std::ws, second))
+        return (0);
     std::cout << "Nickname: ";
-    std::getline(std::cin >> std::ws, nickname);
+    if (!std::getline(std::cin >> std::ws, nickname))
+        return (0);
     std::cout << "Phone Number: ";
-    std::getline(std::cin >> std::ws, number);
-    const char *cstr = number.c_str();
-    try 
-    {
-		int value = std::stoi(cstr);
-		std::cout << value << '\n';
-		if (value < 0)
-		{
-		    std::cout << "Invalid number!" << '\n';
-        	return (0);
-		}
-		} catch (const std::invalid_argument& e) {
-			std::cout << "Invalid number!" << '\n';
-		    return (0);
-		} catch (const std::out_of_range& e) {
-			std::cout << "Invalid number!" << '\n';
-		    return (0);
-		}
-    //num = strtoll(cstr, NULL, 10);
-    //if (num == 0 || num < 0)
-    //{
-    //    std::cout << "Invalid number!" << '\n';
-      //  return (0);
-    //}
+    if (!std::getline(std::cin >> std::ws, number))
+        return (0);
+    if (!IsValidNumber(number))
+    {   
+        std::cout << "Invalid number!" << '\n'; 
+        return (-1);
+    }
     std::cout << "Darkest Secret: ";
-    std::getline(std::cin >> std::ws, secret);
-    AddContact(pb, Contact(first, second, nickname, num, secret));
+    if (!std::getline(std::cin >> std::ws, secret))
+        return (0);
+    AddContact(pb, Contact(first, second, nickname, std::strtoll(number.c_str(), NULL, 10), secret));
     return (1);
 }
 
@@ -119,13 +126,20 @@ int main()
     while (1)
     {
         std::cout << "What do you want to do? (ADD/SEARCH/EXIT) ";
-        std::getline(std::cin >> std::ws, command);
-        if (command.compare(0, 3, "ADD") == 0)
-            MakeContact(phoneBook);
-        if (command.compare(0, 4, "EXIT") == 0)
+        if (!std::getline(std::cin >> std::ws, command))
+            return (0);
+        if (command.compare(0, 3, "ADD") == 0 && command.size() == 3)
+        {
+            if (MakeContact(phoneBook) == 0)
+                break;
+        }
+        if (command.compare(0, 4, "EXIT") == 0 && command.size() == 4)
             break ;
-        if (command.compare(0, 6, "SEARCH") == 0)
-            DisplaySearch(phoneBook);
+        if (command.compare(0, 6, "SEARCH") == 0 && command.size() == 6)
+        {    
+            if (!DisplaySearch(phoneBook))
+                break;
+        }
     }
     return (0);
 }

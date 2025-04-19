@@ -1,6 +1,4 @@
 #include <iostream>
-#include <cstring>
-#include <string>
 
 int main(int argc, char **argv)
 {
@@ -14,7 +12,7 @@ int main(int argc, char **argv)
     {
         for (int j = 0; argv[i][j]; j++)
         {
-            putchar(toupper(argv[i][j]));
+            std::cout << (char)(std::toupper(argv[i][j]));
         }
         std::cout << " ";
     }
