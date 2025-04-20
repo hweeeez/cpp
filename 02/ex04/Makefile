@@ -1,7 +1,7 @@
 NAME = ex04
 srcfiles := main.cpp
 objfiles := $(srcfiles:.cpp=.o)
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra -std=c++98 -g
 
 all: $(NAME)
 
