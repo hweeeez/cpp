@@ -1,5 +1,5 @@
-NAME = PhoneBook
-srcfiles := PhoneBook.cpp Contact.cpp
+NAME = Animal
+srcfiles := Animal.cpp main.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
