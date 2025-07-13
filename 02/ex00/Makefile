@@ -1,5 +1,5 @@
-NAME = Zombie
-srcfiles := Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+NAME = ex00
+srcfiles := Fixed.cpp main.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 

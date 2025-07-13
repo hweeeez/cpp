@@ -1,5 +1,5 @@
-NAME = ex00
-srcfiles := Fixed.cpp main.cpp
+NAME = PhoneBook
+srcfiles := PhoneBook.cpp Contact.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 

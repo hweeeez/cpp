@@ -1,9 +1,14 @@
-#include "Zombie.hpp"
+#include "Fixed.hpp"
 
-int main()
+int main(void)
 {
-    Zombie* zombie = newZombie("hello");
-    zombie->announce();
-    randomChump("bye");
-    delete zombie;
+    Fixed a;
+    Fixed b(a);
+    Fixed c;
+
+    c = b;
+
+    std::cout << a.getRawBits() << std::endl;
+    std::cout << b.getRawBits() << std::endl;
+    std::cout << c.getRawBits() << std::endl;
 }
