@@ -2,6 +2,6 @@
 
 int main()
 {
-    Zombie* zombie = zombieHorde(10, "bad");
+    Zombie* zombie = zombieHorde(18, "bad");
     delete[] zombie;
 }
