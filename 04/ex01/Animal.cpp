@@ -4,10 +4,10 @@ Animal::Animal()
 {
 }
 
-// Animal::Animal(const Animal &animal)
-// {
-// 	std::cout << "Copy Constructor" << '\n';
-// }
+Animal::Animal(const Animal &animal)
+{
+	type = animal.type;
+}
 
 Animal::~Animal()
 {
@@ -24,14 +24,15 @@ Cat::Cat()
 	brain = new Brain();
 }
 
-// Cat::Cat(const Cat &cat)
-// {
-	
-// }
+Cat::Cat(const Cat &cat) : Animal(cat)
+{
+	type = cat.type;
+	brain = new Brain(*cat.brain);
+}
 
 Cat::~Cat()
 {
-	delete[] brain;
+	delete brain;
 }
 
 Dog::Dog()
@@ -40,14 +41,15 @@ Dog::Dog()
 	brain = new Brain();
 }
 
-// Dog::Dog(const Dog &dog)
-// {
-
-// }
+Dog::Dog(const Dog &dog) : Animal(dog)
+{
+	type = dog.type;
+	brain = new Brain(*dog.brain);
+}
 
 Dog::~Dog()
 {
-	delete[] brain;
+	delete brain;
 }
 
 void Animal::makeSound()
