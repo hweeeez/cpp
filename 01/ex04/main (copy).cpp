@@ -21,13 +21,30 @@ void replaceLine(std::string* line, std::string s2, int start, int* end)
 int processLine(std::string* line, std::string s1, std::string s2)
 {
     int i = 0;
-    //int len = (*line).size();
+    int len = (*line).size();
     int s1len = s1.size();
-	int pos = 0;
-    while ((i = (*line).find(s1, pos) != std::string::npos))
+    while (i < len)
     {
-		int end = i + s1len;
-		replaceLine(line, s2, i, &(end));
+        int k = i;
+       for (int j = 0; j < s1len; j++)
+       {
+            if ((*line)[k] ==  s1[j])
+            {
+                k++;
+                if (s1[j + 1] == '\0')
+                { 
+                    replaceLine(line, s2, i, &k);
+                    i = k;
+                    len = (*line).size();
+                    break;
+                }
+            }
+			else
+			{
+				break;
+			}
+       }
+       i++;
     }
 
     return (0);
