@@ -5,20 +5,22 @@ Fixed::Fixed() : value(0)
     std::cout << "Default Constructor" << '\n';
 }
 
-Fixed::Fixed(const Fixed &fixed) : value(fixed.value)
+Fixed::Fixed(const Fixed &fixed)
 {
     std::cout << "Copy Constructor" << '\n';
+    *this = fixed;
 }
 
 Fixed::Fixed(const int val)
 {
-    value = val >> frac;
+    this->value = val << frac;
     std::cout << "Int Constructor " << value << '\n';
 }
 
 Fixed::Fixed(const float val)
 {
-    value = val / (float)(1 << frac);
+    std::cout << "Float Constructor " << value << '\n';
+    value = val * (float)(1 << frac);
 }
 
 Fixed::~Fixed()
@@ -31,7 +33,7 @@ Fixed& Fixed::operator=(const Fixed &fixed)
     std::cout << "Copy Assignment Operator" << '\n';
     if (this != &fixed)
     {
-        setRawBits(fixed.getRawBits());
+        this->setRawBits(fixed.getRawBits());
     }
     return *this;
 }
@@ -55,7 +57,7 @@ int Fixed::toInt(void) const
 
 float Fixed::toFloat(void) const
 {
-    return (float)this->value * (float)(1 << frac);
+    return (float)this->value / (float)(1 << frac);
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed)
