@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+#include <cmath>
 
 Fixed::Fixed() : value(0)
 {
@@ -20,7 +21,7 @@ Fixed::Fixed(const int val)
 Fixed::Fixed(const float val)
 {
     std::cout << "Float Constructor " << value << '\n';
-    value = val * (float)(1 << frac);
+    value = roundf(val * (float)(1 << frac));
 }
 
 Fixed::~Fixed()
