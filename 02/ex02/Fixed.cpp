@@ -15,13 +15,11 @@ Fixed::Fixed(const Fixed &fixed)
 Fixed::Fixed(const int val)
 {
     this->value = val << frac;
-    //std::cout << "Int Constructor " << value << '\n';
 }
 
 Fixed::Fixed(const float val)
 {
-    //std::cout << "Float Constructor " << value << '\n';
-    value = roundf(val * (float)(1 << frac));
+    value = static_cast<int> (roundf(val * (1 << frac)));
 }
 
 Fixed::~Fixed()
@@ -58,7 +56,7 @@ int Fixed::toInt(void) const
 
 float Fixed::toFloat(void) const
 {
-    return (float)this->value / (float)(1 << frac);
+    return static_cast<float>(this->value / (1 << frac));
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed)
