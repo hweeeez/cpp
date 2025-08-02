@@ -1,5 +1,5 @@
 NAME = ClapTrap
-srcfiles := ClapTrap.hpp ClapTrap.cpp main.cpp
+srcfiles := ScavTrap.cpp ClapTrap.cpp main.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
