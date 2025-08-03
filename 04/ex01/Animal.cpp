@@ -2,15 +2,27 @@
 
 Animal::Animal()
 {
+	std::cout << "Animal Constructor" << '\n';
 }
 
-Animal::Animal(const Animal &animal)
+Animal::Animal(const Animal &other) : type(other.type)
 {
-	type = animal.type;
+	std::cout << "Animal Copy Constructor" << '\n';
 }
 
 Animal::~Animal()
 {
+	std::cout << "Animal Destructor" << '\n';
+}
+
+Animal& Animal::operator=(const Animal &other)
+{
+	std::cout << "Animal Copy Assignment Constructor" << '\n';
+	if (this != &other)
+	{
+		type = other.type;
+	}
+	return *this;
 }
 
 std::string Animal::getType()
@@ -18,51 +30,7 @@ std::string Animal::getType()
 	return type;
 }
 
-Cat::Cat()
-{
-	type = "Cat";
-	brain = new Brain();
-}
-
-Cat::Cat(const Cat &cat) : Animal(cat)
-{
-	type = cat.type;
-	brain = new Brain(*cat.brain);
-}
-
-Cat::~Cat()
-{
-	delete brain;
-}
-
-Dog::Dog()
-{
-	type = "Dog";
-	brain = new Brain();
-}
-
-Dog::Dog(const Dog &dog) : Animal(dog)
-{
-	type = dog.type;
-	brain = new Brain(*dog.brain);
-}
-
-Dog::~Dog()
-{
-	delete brain;
-}
-
 void Animal::makeSound()
 {
 	std::cout << "Aaaaaaa" << '\n';
-}
-
-void Cat::makeSound()
-{
-	std::cout << "MEOW" << '\n';
-}
-
-void Dog::makeSound()
-{
-	std::cout << "BORK" << '\n';
 }
