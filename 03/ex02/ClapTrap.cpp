@@ -15,11 +15,11 @@ ClapTrap::ClapTrap(std::string _name) : name(_name)
 
 ClapTrap::ClapTrap(const ClapTrap &other) : name(other.name), hitPoints(other.hitPoints), energyPoints(other.energyPoints), attackDamage(other.attackDamage)
 {
-    std::cout << "ClapTrap Copy Constructor" << '\n';
+	std::cout << "ClapTrap Copy Constructor" << '\n';
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &other)
-{    
+{
 	std::cout << "ClapTrap Copy Assignment Constructor" << '\n';
 	if (this != &other)
 	{

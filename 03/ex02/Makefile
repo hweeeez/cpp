@@ -1,5 +1,5 @@
-NAME = Animal
-srcfiles := Animal.cpp main.cpp Dog.cpp Cat.cpp Brain.cpp
+NAME = ClapTrap
+srcfiles := ScavTrap.cpp ClapTrap.cpp main.cpp FragTrap.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 

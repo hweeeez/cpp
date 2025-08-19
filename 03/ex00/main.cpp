@@ -9,8 +9,4 @@ int main()
 	clapTrap.takeDamage(5);
 	clapTrap.takeDamage(5);
 	clapTrap.beRepaired(5);
-
-	ScavTrap scavTrap = ScavTrap("Mario");
-	scavTrap.attack("Wario");
-	scavTrap.guardGate();
 }

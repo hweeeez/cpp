@@ -39,9 +39,20 @@ int main (void)
 	std::cout << cat3.getIdea(2) << '\n';
 
 	std::cout << '\n';
-	Dog dog = Dog();
-	dog.setIdea(2, "choo choo");
-	std::cout << dog.getIdea(2) << '\n';
+	Dog* dog = new Dog();
+	dog->setIdea(99, "choo choo");
+	std::cout << dog->getIdea(99) << '\n';
+
+	std::cout << '\n';
+	Dog dog2(*dog);
+	delete(dog);
+	std::cout << dog2.getIdea(99) << '\n';
+
+	std::cout << '\n';
+	Dog dog3;
+	dog3 = dog2;
+	std::cout << dog3.getIdea(2) << '\n';
+	std::cout << dog3.getIdea(99) << '\n';
 
 	return 0;
 }

@@ -2,12 +2,15 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout << "Default Constructor" << '\n';
+    std::cout << "ClapTrap Default Constructor" << '\n';
+	hitPoints = 10;
+    energyPoints = 10;
+    attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string _name) : name(_name)
 {
-    std::cout << "Actual Constructor" << '\n';
+    std::cout << "ClapTrap Actual Constructor" << '\n';
     hitPoints = 10;
     energyPoints = 10;
     attackDamage = 0;
@@ -15,7 +18,7 @@ ClapTrap::ClapTrap(std::string _name) : name(_name)
 
 ClapTrap::ClapTrap(const ClapTrap &other) : name(other.name), hitPoints(other.hitPoints), energyPoints(other.energyPoints), attackDamage(other.attackDamage)
 {
-
+	std::cout << "ClapTrap Copy Constructor" << '\n';
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &other)
@@ -32,7 +35,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &other)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor" << '\n';
+    std::cout << "ClapTrap Destructor" << '\n';
 }
 
 void ClapTrap::attack(const std::string &target)

@@ -1,5 +1,6 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
@@ -14,11 +15,19 @@ int main()
 	std::cout << '\n';
 	ScavTrap scavTrap = ScavTrap("Mario");
 	scavTrap.attack("Wario");
-	scavTrap.takeDamage(2);
-	scavTrap.beRepaired(2);
 	scavTrap.guardGate();
 
 	std::cout << '\n';
-	ScavTrap scav2(scavTrap);
-	scav2.guardGate();
+	FragTrap fragTrap = FragTrap("Yoshi");
+	fragTrap.attack("Wario");
+	fragTrap.highFivesGuys();
+
+	std::cout << '\n';
+	FragTrap YoshiClone(fragTrap);
+	YoshiClone.takeDamage(20);
+
+	std::cout << '\n';
+	FragTrap YoshiDouble;
+	YoshiDouble = fragTrap;
+	fragTrap.beRepaired(2);
 }
