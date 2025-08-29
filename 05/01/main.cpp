@@ -5,12 +5,14 @@ int main()
 	Bureaucrat* b = new Bureaucrat("bro", 2);
 
 	std::cout << *b << '\n';
+	b->signForm();
 	b->incrementGrade();
 	std::cout << *b << '\n';
 	b->decrementGrade();
 	std::cout << *b << '\n';
 
 	Bureaucrat *c = new Bureaucrat("ski", 150);
+	c->signForm();
 	c->decrementGrade();
 	std::cout << *c << '\n';
 

@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : name("joe"), grade(0)
 {
@@ -11,7 +12,7 @@ Bureaucrat::Bureaucrat(const std::string _name, const int _grade) : name(_name)
 	grade = _grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name)
 {
 	std::cout << "Copy Constructor" << '\n';
 	grade = other.grade;
@@ -77,4 +78,11 @@ void Bureaucrat::incrementGrade()
 	{
 		std::cerr << "Grade Too Low" << '\n';
 	}
+}
+
+void Bureaucrat::signForm() const
+{
+	Form form;
+
+	form.beSigned(*this);
 }

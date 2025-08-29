@@ -26,6 +26,7 @@ class Bureaucrat
 		{
 
 		};
+		void signForm() const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
