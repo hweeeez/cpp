@@ -20,6 +20,10 @@ class Form
 		int getGrade() const;
 		class GradeTooHighException : public std::exception
 		{
+			public:
+			virtual	const char* what() const throw(){
+					return "grade was too high";
+				}
 		};
 		class GradeTooLowException: public std::exception
 		{

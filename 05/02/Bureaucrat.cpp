@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : name("joe"), grade(0)
 {
@@ -80,9 +80,12 @@ void Bureaucrat::incrementGrade()
 	}
 }
 
-void Bureaucrat::signForm() const
+void Bureaucrat::signForm(AForm & form) const
 {
-	Form form;
-
 	form.beSigned(*this);
+}
+
+void Bureaucrat::executeForm(AForm const & form) const
+{
+	std::cout << this->name << " executed " << form << '\n';
 }
