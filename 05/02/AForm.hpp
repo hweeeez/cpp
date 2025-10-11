@@ -2,6 +2,8 @@
 #define AFORM_HPP
 
 #include <iostream>
+#include <fstream>
+#include <cstring>
 #include "Bureaucrat.hpp"
 
 class AForm
@@ -12,8 +14,10 @@ class AForm
 		const int grade;
 		const int requiredSignGrade;
 		const int requiredExecGrade;
+		std::string target;
 	public:
 		AForm();
+		AForm(std::string target);
 		AForm(const AForm &other);
 		AForm& operator=(const AForm &other);
 		~AForm();
@@ -35,7 +39,9 @@ class AForm
 				}
 		};
 		void beSigned(Bureaucrat bureaucrat);
-		virtual void execute(Bureaucrat const & executor) = 0;
+		virtual void execute(Bureaucrat const & executor);
+		virtual void doAction() = 0;
+		std::string getTarget() const;
 };
 
 std::ostream& operator << (std::ostream& out, const AForm &form);

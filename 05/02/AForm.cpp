@@ -1,6 +1,6 @@
 #include "AForm.hpp"
 
-AForm::AForm() : name("wow"), is_signed(false), grade(20)
+AForm::AForm(std::string _target) : name("wow"), is_signed(false), grade(20), target(_target), requiredExecGrade()
 {
 
 }
@@ -39,6 +39,11 @@ bool AForm::getSigned() const
 	return is_signed;
 }
 
+std::string AForm::getTarget() const
+{
+	return target;
+}
+
 void AForm::beSigned(Bureaucrat bureaucrat)
 {
 	try
@@ -53,6 +58,19 @@ void AForm::beSigned(Bureaucrat bureaucrat)
 	catch(const AForm::GradeTooLowException &e)
 	{
 		std::cerr << bureaucrat << " couldn't sign " << *this << " because " << e.what() << '\n';
+	}
+}
+
+void AForm::doAction()
+{
+
+}
+
+void AForm::execute(Bureaucrat const & executor)
+{
+	if (is_signed && executor.getGrade() >= grade)
+	{
+		doAction();
 	}
 }
 
