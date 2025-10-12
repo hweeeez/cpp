@@ -27,4 +27,14 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::doAction()
 {
+	std::cout << "vvvvvvrrrrrrrrrrrrrrrrrrrrr" << '\n';
+	int rng = rand() / RAND_MAX;
+	if (rng == 0)
+	{
+		std::cout << "Robotomizaton Failed." << '\n';
+	}
+	else
+	{
+		std::cout << getTarget() + " has been robotomized." << '\n';
+	}
 }

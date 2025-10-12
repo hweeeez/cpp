@@ -27,5 +27,5 @@ PresidentialPardonForm::~PresidentialPardonForm()
 
 void PresidentialPardonForm::doAction()
 {
-
+	std::cout << getTarget() + " has been pardoned by Zaphod Beeblebrox" << '\n';
 }

@@ -1,11 +1,11 @@
 #include "Form.hpp"
 
-Form::Form() : name("wow"), is_signed(false), grade(20)
+Form::Form() : name("wow"), is_signed(false), requiredSignGrade(20), requiredExecGrade(20)
 {
 
 }
 
-Form::Form(const Form &other) : grade(other.grade)
+Form::Form(const Form &other) : requiredExecGrade(other.requiredExecGrade), requiredSignGrade(other.requiredSignGrade)
 {
 	is_signed = other.is_signed;
 }
@@ -24,9 +24,14 @@ Form::~Form()
 	std::cout << "Destructor" << '\n';
 }
 
-int Form::getGrade() const
+const int Form::getRequiredExecGrade() const
 {
-	return grade;
+	return requiredExecGrade;
+}
+
+const int Form::getRequiredSignGrade() const
+{
+	return requiredSignGrade;
 }
 
 std::string Form::getName() const
@@ -43,7 +48,7 @@ void Form::beSigned(Bureaucrat bureaucrat)
 {
 	try
 	{
-		if (bureaucrat.getGrade() <= getGrade())
+		if (bureaucrat.getGrade() <= getRequiredSignGrade())
 		{
 			std::cout << bureaucrat << " signed " << *this << '\n';
 		}

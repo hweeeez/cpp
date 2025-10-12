@@ -1,5 +1,5 @@
 NAME = Bureaucrat
-srcfiles := Bureaucrat.cpp main.cpp Form.cpp
+srcfiles := Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp 
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 

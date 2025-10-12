@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm()
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : AForm(_target, _name, _requiredSignGrade, _requiredExecGrade)
 {
 	std::cout << "ShrubberyCreationForm Constructor" << '\n';
 }
@@ -25,19 +25,12 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 	std::cout << "ShrubberyCreationForm Destructor" << '\n';
 }
 
-void ShrubberyCreationForm::doAction()
+void ShrubberyCreationForm::doAction() const
 {
 	std::string text;
    
     std::ofstream wfile;
     std::string wname = getTarget() + "_shrubbery";
-	std::ifstream rfile("treeart.txt");
-	if (!rfile.good())
-	{
-		std::cout << "Bad file" << '\n';
-		return;
-	}
-    //rfile.open(argv[1]);
     wname.append(".replace");
     wfile.open((const char*)(wname.c_str()));
 	if (!wfile.is_open())
@@ -45,11 +38,26 @@ void ShrubberyCreationForm::doAction()
 		std::cout << "Bad file" << '\n';
 		return;
 	}
-    while (std::getline(rfile, text))
-    {
+    //while (std::getline(rfile, text))
+	text = "       _-_\n";
+	wfile << text << '\n';
+	text = "    /~~   ~~\\n";
+	wfile << text << '\n';
+	text = "  /~~         ~~\\n";
+	wfile << text << '\n';
+	text = "{               }\n";
+	wfile << text << '\n';
+	text = " \  _-     -_  /\n";
+	wfile << text << '\n';
+	text = "   ~  \\ //  ~\n";
+	wfile << text << '\n';
+	text = "_- -   | | _- _\n";
+	wfile << text << '\n';
+	text = "  _ -  | |   -_\n";
+	wfile << text << '\n';
+	text = "      // \\\n";
+	wfile << text << '\n';
 
-        wfile << text << '\n';
-    }
-    rfile.close();
+    //rfile.close();
     wfile.close();
 }
