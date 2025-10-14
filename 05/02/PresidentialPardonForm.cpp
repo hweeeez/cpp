@@ -5,7 +5,7 @@ PresidentialPardonForm::PresidentialPardonForm()
 	std::cout << "PresidentialPardonForm Constructor" << '\n';
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : PresidentialPardonForm(other)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other)
 {
 	std::cout << "PresidentialPardonForm Copy Constructor" << '\n';
 }
@@ -25,7 +25,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 	std::cout << "PresidentialPardonForm Destructor" << '\n';
 }
 
-void PresidentialPardonForm::doAction()
+void PresidentialPardonForm::doAction() const
 {
 	std::cout << getTarget() + " has been pardoned by Zaphod Beeblebrox" << '\n';
 }

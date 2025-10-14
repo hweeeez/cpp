@@ -1,10 +1,12 @@
 #ifndef AFORM_HPP
 #define AFORM_HPP
 
+//#include "Bureaucrat.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class AForm
 {
@@ -22,8 +24,8 @@ class AForm
 		~AForm();
 		std::string getName() const;
 		bool getSigned() const;
-		const int getRequiredSignGrade() const;
-		const int getRequiredExecGrade() const;
+		int getRequiredSignGrade()const;
+		int getRequiredExecGrade() const;
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -45,5 +47,7 @@ class AForm
 };
 
 std::ostream& operator << (std::ostream& out, const AForm &form);
+
+#include "Bureaucrat.hpp"
 
 #endif

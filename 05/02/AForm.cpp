@@ -1,11 +1,11 @@
 #include "AForm.hpp"
 
-AForm::AForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : name(_name), is_signed(false), requiredSignGrade(_requiredSignGrade), target(_target), requiredExecGrade(_requiredExecGrade)
+AForm::AForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : name(_name), is_signed(false), requiredSignGrade(_requiredSignGrade), requiredExecGrade(_requiredExecGrade), target(_target)
 {
 
 }
 
-AForm::AForm(const AForm &other) : requiredExecGrade(other.requiredExecGrade), requiredSignGrade(other.requiredSignGrade)
+AForm::AForm(const AForm &other) : requiredSignGrade(other.requiredSignGrade), requiredExecGrade(other.requiredExecGrade)
 {
 	is_signed = other.is_signed;
 }
@@ -39,12 +39,12 @@ std::string AForm::getTarget() const
 	return target;
 }
 
-const int AForm::getRequiredExecGrade() const
+int AForm::getRequiredExecGrade() const
 {
 	return requiredExecGrade;
 }
 
-const int AForm::getRequiredSignGrade() const
+int AForm::getRequiredSignGrade() const
 {
 	return requiredSignGrade;
 }

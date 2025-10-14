@@ -25,7 +25,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 	std::cout << "RobotomyRequestForm Destructor" << '\n';
 }
 
-void RobotomyRequestForm::doAction()
+void RobotomyRequestForm::doAction() const
 {
 	std::cout << "vvvvvvrrrrrrrrrrrrrrrrrrrrr" << '\n';
 	int rng = rand() / RAND_MAX;
