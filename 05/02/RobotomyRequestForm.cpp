@@ -1,11 +1,12 @@
 #include "RobotomyRequestForm.hpp"
+#include <stdlib.h> 
 
 RobotomyRequestForm::RobotomyRequestForm()
 {
 	std::cout << "RobotomyRequestForm Constructor" << '\n';
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : RobotomyRequestForm(other)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other)
 {
 	std::cout << "RobotomyRequestForm Copy Constructor" << '\n';
 }

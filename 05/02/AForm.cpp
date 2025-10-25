@@ -1,5 +1,10 @@
 #include "AForm.hpp"
 
+AForm::AForm() : name(""), is_signed(false), requiredSignGrade(0), requiredExecGrade(0), target("")
+{
+
+}
+
 AForm::AForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : name(_name), is_signed(false), requiredSignGrade(_requiredSignGrade), requiredExecGrade(_requiredExecGrade), target(_target)
 {
 
@@ -21,7 +26,7 @@ AForm& AForm::operator=(const AForm &other)
 
 AForm::~AForm()
 {
-	std::cout << "Destructor" << '\n';
+	std::cout << "AForm Destructor" << '\n';
 }
 
 std::string AForm::getName() const
@@ -49,13 +54,14 @@ int AForm::getRequiredSignGrade() const
 	return requiredSignGrade;
 }
 
-void AForm::beSigned(Bureaucrat bureaucrat)
+void AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	try
 	{
 		if (bureaucrat.getGrade() <= getRequiredSignGrade())
 		{
-			std::cout << bureaucrat << " signed " << *this << '\n';
+			std::cout << bureaucrat << " signed " << *this << " successfully."<< '\n';
+			is_signed = true;
 		}
 		else
 			throw GradeTooLowException();
@@ -73,8 +79,9 @@ void AForm::doAction() const
 
 bool AForm::execute(Bureaucrat const & executor) const
 {
-	if (is_signed && executor.getGrade() >= getRequiredExecGrade())
+	if (is_signed && executor.getGrade() <= getRequiredExecGrade())
 	{
+		std::cout << "signed: " << is_signed << '\n';
 		doAction();
 		return true;
 	}

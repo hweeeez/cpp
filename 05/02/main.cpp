@@ -5,15 +5,11 @@
 
 int main()
 {
-	Bureaucrat* b = new Bureaucrat("bro", 2);
+	Bureaucrat* b = new Bureaucrat("bro", 3);
 	ShrubberyCreationForm* shrub = new ShrubberyCreationForm("home", "shrubbery", 145, 137);
 
 	std::cout << *b << '\n';
 	b->signForm(*shrub);
-	b->incrementGrade();
-	std::cout << *b << '\n';
-	b->decrementGrade();
-	std::cout << *b << '\n';
 	shrub->execute(*b);
 	// Bureaucrat *c = new Bureaucrat("ski", 150);
 	// c->signForm();

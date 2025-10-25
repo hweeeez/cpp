@@ -40,8 +40,8 @@ class AForm
 					return "grade was too low";
 				}
 		};
-		void beSigned(Bureaucrat bureaucrat);
-		virtual bool execute(Bureaucrat const & executor) const;
+		void beSigned(const Bureaucrat& bureaucrat);
+		bool execute(Bureaucrat const & executor) const;
 		virtual void doAction() const = 0;
 		std::string getTarget() const;
 };
