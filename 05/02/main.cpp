@@ -11,6 +11,14 @@ int main()
 	std::cout << *b << '\n';
 	b->signForm(*shrub);
 	shrub->execute(*b);
+
+	PresidentialPardonForm* p = new PresidentialPardonForm("Big Boi", "ass", 74, 45);
+	b->signForm(*p);
+	p->execute(*b);
+
+	RobotomyRequestForm* r = new RobotomyRequestForm("bobbo", "bee", 25, 5);
+	b->signForm(*r);
+	r->execute(*b);
 	// Bureaucrat *c = new Bureaucrat("ski", 150);
 	// c->signForm();
 	// c->decrementGrade();

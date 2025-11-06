@@ -5,6 +5,11 @@ PresidentialPardonForm::PresidentialPardonForm()
 	std::cout << "PresidentialPardonForm Constructor" << '\n';
 }
 
+PresidentialPardonForm::PresidentialPardonForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : AForm(_target, _name, _requiredSignGrade, _requiredExecGrade)
+{
+
+}
+
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other)
 {
 	std::cout << "PresidentialPardonForm Copy Constructor" << '\n';
