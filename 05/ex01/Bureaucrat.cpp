@@ -1,17 +1,18 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : name("joe"), grade(0)
 {
 	std::cout << "Default Constructor" << '\n';
 }
 
-Bureaucrat::Bureaucrat(const std::string _name, const int _grade) : name(_name)
+Bureaucrat::Bureaucrat(const std::string _name, const unsigned int _grade) : name(_name)
 {
 	std::cout << "Parameterized Constructor" << '\n';
 	grade = _grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name)
 {
 	std::cout << "Copy Constructor" << '\n';
 	grade = other.grade;
@@ -37,7 +38,7 @@ std::string Bureaucrat::getName() const
 	return name;
 }
 
-int Bureaucrat::getGrade() const
+unsigned int Bureaucrat::getGrade() const
 {
 	return grade;
 }
@@ -77,4 +78,9 @@ void Bureaucrat::incrementGrade()
 	{
 		std::cerr << "Grade Too Low" << '\n';
 	}
+}
+
+void Bureaucrat::signForm(Form *form) const
+{
+	form->beSigned(*this);
 }

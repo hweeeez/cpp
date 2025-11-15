@@ -6,17 +6,17 @@
 int main()
 {
 	Bureaucrat* b = new Bureaucrat("bro", 3);
-	ShrubberyCreationForm* shrub = new ShrubberyCreationForm("home", "shrubbery", 145, 137);
+	ShrubberyCreationForm* shrub = new ShrubberyCreationForm("home");
 
 	std::cout << *b << '\n';
 	b->signForm(*shrub);
 	shrub->execute(*b);
 
-	PresidentialPardonForm* p = new PresidentialPardonForm("Big Boi", "ass", 74, 45);
+	PresidentialPardonForm* p = new PresidentialPardonForm("Big Boi");
 	b->signForm(*p);
 	p->execute(*b);
 
-	RobotomyRequestForm* r = new RobotomyRequestForm("bobbo", "bee", 25, 5);
+	RobotomyRequestForm* r = new RobotomyRequestForm("bobbo");
 	b->signForm(*r);
 	r->execute(*b);
 	// Bureaucrat *c = new Bureaucrat("ski", 150);

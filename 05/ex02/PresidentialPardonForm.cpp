@@ -5,7 +5,7 @@ PresidentialPardonForm::PresidentialPardonForm()
 	std::cout << "PresidentialPardonForm Constructor" << '\n';
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : AForm(_target, _name, _requiredSignGrade, _requiredExecGrade)
+PresidentialPardonForm::PresidentialPardonForm(std::string _target) : AForm("PresidentialPardonForm", 72, 45), target(_target)
 {
 
 }
@@ -28,6 +28,11 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 PresidentialPardonForm::~PresidentialPardonForm()
 {
 	std::cout << "PresidentialPardonForm Destructor" << '\n';
+}
+
+std::string PresidentialPardonForm::getTarget() const
+{
+	return target;
 }
 
 void PresidentialPardonForm::doAction() const

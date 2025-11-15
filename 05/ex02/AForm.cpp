@@ -1,13 +1,31 @@
 #include "AForm.hpp"
 
-AForm::AForm() : name(""), is_signed(false), requiredSignGrade(0), requiredExecGrade(0), target("")
+AForm::AForm() : name(""), is_signed(false), requiredSignGrade(0), requiredExecGrade(0)
 {
 
 }
 
-AForm::AForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : name(_name), is_signed(false), requiredSignGrade(_requiredSignGrade), requiredExecGrade(_requiredExecGrade), target(_target)
+AForm::AForm(std::string _name, int _requiredSignGrade, int _requiredExecGrade) : name(_name), is_signed(false), requiredSignGrade(_requiredSignGrade), requiredExecGrade(_requiredExecGrade)
 {
-
+	try
+	{
+		if (_requiredSignGrade > 150 || _requiredExecGrade > 150)
+		{
+			throw GradeTooLowException();
+		}
+		else if (_requiredSignGrade < 1 || _requiredExecGrade < 1)
+		{
+			throw GradeTooHighException();
+		}
+	}
+	catch(const AForm::GradeTooLowException &e)
+	{
+		std::cerr << "Grade is too low." << e.what() << '\n';
+	}
+	catch(const AForm::GradeTooHighException &e)
+	{
+		std::cerr << "Grade is too high." << e.what() << '\n';
+	}
 }
 
 AForm::AForm(const AForm &other) : requiredSignGrade(other.requiredSignGrade), requiredExecGrade(other.requiredExecGrade)
@@ -37,11 +55,6 @@ std::string AForm::getName() const
 bool AForm::getSigned() const
 {
 	return is_signed;
-}
-
-std::string AForm::getTarget() const
-{
-	return target;
 }
 
 int AForm::getRequiredExecGrade() const

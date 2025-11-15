@@ -15,10 +15,10 @@ class AForm
 		bool is_signed;
 		const int requiredSignGrade;
 		const int requiredExecGrade;
-		std::string target;
+		virtual void doAction() const = 0;
 	public:
 		AForm();
-		AForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade);
+		AForm(std::string _name, int _requiredSignGrade, int _requiredExecGrade);
 		AForm(const AForm &other);
 		AForm& operator=(const AForm &other);
 		~AForm();
@@ -42,8 +42,6 @@ class AForm
 		};
 		void beSigned(const Bureaucrat& bureaucrat);
 		bool execute(Bureaucrat const & executor) const;
-		virtual void doAction() const = 0;
-		std::string getTarget() const;
 };
 
 std::ostream& operator << (std::ostream& out, const AForm &form);

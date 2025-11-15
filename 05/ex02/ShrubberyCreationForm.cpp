@@ -5,7 +5,7 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : AForm(_target, _name, _requiredSignGrade, _requiredExecGrade)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) : AForm("ShrubberyCreationForm", 145, 137), target(_target)
 {
 	std::cout << "ShrubberyCreationForm Constructor" << '\n';
 }
@@ -28,6 +28,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 	std::cout << "ShrubberyCreationForm Destructor" << '\n';
+}
+
+std::string ShrubberyCreationForm::getTarget() const
+{
+	return target;
 }
 
 void ShrubberyCreationForm::doAction() const

@@ -1,18 +1,32 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : name("joe"), grade(0)
 {
 	std::cout << "Default Constructor" << '\n';
 }
 
-Bureaucrat::Bureaucrat(const std::string _name, const int _grade) : name(_name)
+Bureaucrat::Bureaucrat(const std::string _name, const unsigned int _grade) : name(_name)
 {
-	std::cout << "Parameterized Constructor" << '\n';
+	//std::cout << "Parameterized Constructor" << '\n';
+	try
+	{
+		if (grade > 150)
+			throw GradeTooLowException();
+		else if (grade < 1)
+			throw GradeTooHighException();
+	}
+	catch(const Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << "Grade Too Low" << '\n';
+	}
+	catch(const Bureaucrat::GradeTooHighException& e)
+	{
+		std::cerr << "Grade Too High" << '\n';
+	}
 	grade = _grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name)
+Bureaucrat::Bureaucrat(const Bureaucrat &other)
 {
 	std::cout << "Copy Constructor" << '\n';
 	grade = other.grade;
@@ -38,7 +52,7 @@ std::string Bureaucrat::getName() const
 	return name;
 }
 
-int Bureaucrat::getGrade() const
+unsigned int Bureaucrat::getGrade() const
 {
 	return grade;
 }
@@ -54,13 +68,13 @@ void Bureaucrat::decrementGrade()
 	try
 	{
 		if (grade + 1 > 150)
-			throw GradeTooHighException();
+			throw GradeTooLowException();
 		else
 			grade++;
 	}
-	catch(const Bureaucrat::GradeTooHighException& e)
+	catch(const Bureaucrat::GradeTooLowException& e)
 	{
-		std::cerr << "Grade Too High" << '\n';
+		std::cerr << "Grade Too Low" << '\n';
 	}
 	
 }
@@ -70,19 +84,12 @@ void Bureaucrat::incrementGrade()
 	try
 	{
 		if (grade - 1 < 1)
-			throw GradeTooLowException();
+			throw GradeTooHighException();
 		else
 			grade--;
 	}
-	catch(const Bureaucrat::GradeTooLowException& e)
+	catch(const Bureaucrat::GradeTooHighException& e)
 	{
-		std::cerr << "Grade Too Low" << '\n';
+		std::cerr << "Grade Too High" << '\n';
 	}
-}
-
-void Bureaucrat::signForm() const
-{
-	Form form;
-
-	form.beSigned(*this);
 }

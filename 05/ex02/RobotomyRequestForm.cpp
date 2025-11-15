@@ -12,9 +12,9 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AFo
 	std::cout << "RobotomyRequestForm Copy Constructor" << '\n';
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string _target, std::string _name, int _requiredSignGrade, int _requiredExecGrade) : AForm(_target, _name, _requiredSignGrade, _requiredExecGrade)
+RobotomyRequestForm::RobotomyRequestForm(std::string _target) : AForm("RobotomyRequestForm", 25, 5), target(_target)
 {
-
+	
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
@@ -30,6 +30,11 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 RobotomyRequestForm::~RobotomyRequestForm()
 {
 	std::cout << "RobotomyRequestForm Destructor" << '\n';
+}
+
+std::string RobotomyRequestForm::getTarget() const
+{
+	return target;
 }
 
 void RobotomyRequestForm::doAction() const

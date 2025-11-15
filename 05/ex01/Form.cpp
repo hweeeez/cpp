@@ -5,7 +5,26 @@ Form::Form() : name("wow"), is_signed(false), requiredSignGrade(20), requiredExe
 
 }
 
-Form::Form(const Form &other) : requiredExecGrade(other.requiredExecGrade), requiredSignGrade(other.requiredSignGrade)
+Form::Form(std::string _name, int _requiredSignGrade, int _requiredExecGrade) : name(_name), is_signed(false), requiredSignGrade(_requiredSignGrade), requiredExecGrade(_requiredExecGrade)
+{
+	try
+	{
+		if (_requiredSignGrade > 150 || _requiredExecGrade > 150)
+		{
+			throw GradeTooLowException();
+		}
+		else if (_requiredSignGrade < 1 || _requiredExecGrade < 1)
+		{
+			throw GradeTooHighException();
+		}
+	}
+	catch(const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+}
+
+Form::Form(const Form &other) : requiredSignGrade(other.requiredSignGrade), requiredExecGrade(other.requiredExecGrade)
 {
 	is_signed = other.is_signed;
 }
@@ -24,12 +43,12 @@ Form::~Form()
 	std::cout << "Destructor" << '\n';
 }
 
-const int Form::getRequiredExecGrade() const
+unsigned int Form::getRequiredExecGrade() const
 {
 	return requiredExecGrade;
 }
 
-const int Form::getRequiredSignGrade() const
+unsigned int Form::getRequiredSignGrade() const
 {
 	return requiredSignGrade;
 }
