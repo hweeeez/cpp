@@ -3,9 +3,12 @@
 
 #include <iostream>
 
+
 class ScalarConverter
 {
-    public:
+	private:
+	
+	public:
     ScalarConverter();
     ScalarConverter(const ScalarConverter &other);
     ScalarConverter& operator=(const ScalarConverter &other);
@@ -13,4 +16,8 @@ class ScalarConverter
     static void convert(std::string input);
 };
 
-#endif;
+std::string gettype(std::string input);
+void convertfromint(std::string input);
+void convertfromfloat(std::string input);
+
+#endif
