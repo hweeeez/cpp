@@ -1,12 +1,12 @@
 #include "ScalarConverter.hpp"
 #include <sstream>
 #include <iomanip>
+#include <bits/stdc++.h>
+#include <string>
 
 void convertfromint(std::string input)
 {
-	std::stringstream ss(input);
-	int res;
-	ss >> res;
+	long res = std::atol(input.c_str());
 	if (res >= 0 && res <= 127 && isprint(res))
 	{
 		std::cout << "char: '" << static_cast<char>(res) << "'" << '\n';
@@ -15,18 +15,15 @@ void convertfromint(std::string input)
 	{
 		std::cout << "Not Displayable" << '\n';
 	}
-	std::cout << "int: " << (res) << '\n';
+	if (res <= INTMAX && res >= INTMIN)
+		std::cout << "int: " << static_cast<int>(res) << '\n';
 	std::cout << "float: " << static_cast<float>(res) << ".0f" << '\n';
 	std::cout << "double: " << static_cast<double>(res) << ".0" << '\n';
 }
 
 void convertfromfloat(std::string input)
 {
-	std::stringstream ss(input);
-	float res;
-	ss >> res;
-	input.erase(input.length() - 1);
-	int pres = input.substr(input.find(".") + 1, input.length() - 1).length();
+	float res = std::atof(input.c_str());
 	if (res >= 0 && res <= 127 && isprint(res))
 	{
 		std::cout << "char: '" << static_cast<char>(res) << "'" << '\n';
@@ -36,8 +33,24 @@ void convertfromfloat(std::string input)
 		std::cout << "Not Displayable" << '\n';
 	}
 	std::cout << "int: " << static_cast<int>(res) << '\n';
-	std::cout << "float: " << std::fixed << std::setprecision(pres) << (res)<< "f"  << '\n';
-	std::cout << "double: "<< std::fixed << std::setprecision(pres)  << static_cast<double>(res) << '\n';
+	std::cout << "float: " << res << "f"  << '\n';
+	std::cout << "double: " << static_cast<double>(res) << '\n';
+}
+
+void convertfromdouble(std::string input)
+{
+	float res = std::atof(input.c_str());
+	if (res >= 0 && res <= 127 && isprint(res))
+	{
+		std::cout << "char: '" << static_cast<char>(res) << "'" << '\n';
+	}
+	else
+	{
+		std::cout << "Not Displayable" << '\n';
+	}
+	std::cout << "int: " << static_cast<int>(res) << '\n';
+	std::cout << "float: " << static_cast<float>(res) << "f"  << '\n';
+	std::cout << "double: " << (res) << '\n';
 }
 
 std::string gettype(std::string input)
@@ -52,8 +65,10 @@ std::string gettype(std::string input)
 		}
 	}
 	if (source.find("inf") != std::string::npos || source.find("nan") != std::string::npos)
-	{
-		return "pseudoliteral";
+	{ 
+		if (source.find_last_of("f") == source.length() - 1)
+			return "float";
+		return "double";
 	}
 	if (source.length() == 1)
 	{

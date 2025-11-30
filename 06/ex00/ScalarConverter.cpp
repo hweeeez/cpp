@@ -38,11 +38,11 @@ void ScalarConverter::convert(std::string input)
 	else{
 		std::cout << type << '\n';
 		if (type == "int")
-		{
 			convertfromint(input);
-		}
 		if (type == "float")
 			convertfromfloat(input);
+		if (type == "double")
+			convertfromdouble(input);
 	}
 
 }
