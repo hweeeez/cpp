@@ -27,5 +27,6 @@ std::string gettype(std::string input);
 void convertfromint(std::string input);
 void convertfromfloat(std::string input);
 void convertfromdouble(std::string input);
+bool ischar(std::string input);
 
 #endif

@@ -29,7 +29,7 @@ ScalarConverter::~ScalarConverter()
 void ScalarConverter::convert(std::string input)
 {
     //char int float double //need to skip signs first
-
+std::cout << input << '\n';
 	std::string type = gettype(input);
 	if (type == "")
 	{
