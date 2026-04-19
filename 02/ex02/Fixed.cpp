@@ -59,7 +59,7 @@ float Fixed::toFloat(void) const
     return static_cast<float>(this->value) / (1 << frac);
 }
 
-std::ostream& operator<<(std::ostream& out, const Fixed& fixed)
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {
     out << fixed.toFloat();
     return out;

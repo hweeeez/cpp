@@ -1,5 +1,5 @@
-NAME = MutantStack
-srcfiles := main.cpp
+NAME = btc
+srcfiles := main.cpp BitcoinExchange.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
 
