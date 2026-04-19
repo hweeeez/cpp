@@ -1,4 +1,4 @@
-#ifndef BITCOINEXHANGE_HPP
+#ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
 class BitcoinExchange
