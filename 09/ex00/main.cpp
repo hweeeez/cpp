@@ -1,11 +1,5 @@
 #include "BitcoinExchange.hpp"
 #include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <ctime>
-#include <string>
-#include <iomanip>
-#include <sstream>
 
 int main()//int argc, char** argv
 {
@@ -37,6 +31,23 @@ int main()//int argc, char** argv
 		std::cout << delim;
 		std::string value = line.substr(delim, line.size());
 		std::cout << value << '\n';
+		std::stringstream ss(value);
+		double v;
+		if (!(ss >> v))
+		{
+			std::cout << "Error: Invalid number" << std::endl;
+			continue;
+		}
+		if (v < 1)
+		{
+			std::cout << "Error: Not a positive number" << std::endl;
+			continue;
+		}
+		if (v > 999)
+		{
+			std::cout << "Error: Number is too large" << std::endl;
+			continue;
+		}
 	}
 	inputFile.close();
     return 0;
