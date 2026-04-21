@@ -1,7 +1,7 @@
 NAME = Bureaucrat
 srcfiles := Bureaucrat.cpp main.cpp
 objfiles := $(srcfiles:.cpp=.o)
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra -g -std=c++98
 
 all: $(NAME)
 
