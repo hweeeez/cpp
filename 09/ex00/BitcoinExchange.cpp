@@ -51,4 +51,9 @@ double BitcoinExchange::GetExchangeRate(std::string date, double value)
 	{
 		return (dateToPrice[date] * value);
 	}
+	else
+	{
+		std::map<std::string, double>::iterator it = lower_bound(dateToPrice.begin(), dateToPrice.end(), date);
+		//if (it.first > )
+	}
 }

@@ -60,7 +60,7 @@ void Bureaucrat::decrementGrade()
 	}
 	catch(const Bureaucrat::GradeTooHighException& e)
 	{
-		std::cerr << "Grade Too High" << '\n';
+		std::cerr << e.what() << '\n';
 	}
 	
 }
@@ -76,7 +76,7 @@ void Bureaucrat::incrementGrade()
 	}
 	catch(const Bureaucrat::GradeTooLowException& e)
 	{
-		std::cerr << "Grade Too Low" << '\n';
+		std::cerr << e.what() << '\n';
 	}
 }
 
@@ -95,4 +95,14 @@ void Bureaucrat::executeForm(AForm const & form) const
 	{
 		std::cout << this->name << "failed to executed " << form << '\n';
 	}
+}
+
+const char *Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+	return ("Grade Too High");
+}
+
+const char *Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+	return ("Grade Too Low");
 }

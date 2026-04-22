@@ -29,16 +29,12 @@ class AForm
 		class GradeTooHighException : public std::exception
 		{
 			public:
-			virtual	const char* what() const throw(){
-					return "grade was too low";
-				}
+			virtual	const char* what() const throw();
 		};
 		class GradeTooLowException: public std::exception
 		{
 			public:
-			virtual	const char* what() const throw(){
-					return "grade was too low";
-				}
+			virtual	const char* what() const throw();
 		};
 		void beSigned(const Bureaucrat& bureaucrat);
 		bool execute(Bureaucrat const & executor) const;

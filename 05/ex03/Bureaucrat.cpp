@@ -51,33 +51,18 @@ std::ostream& operator<<(std::ostream &out, const Bureaucrat& Bureaucrat)
 
 void Bureaucrat::decrementGrade()
 {
-	try
-	{
-		if (grade + 1 > 150)
-			throw GradeTooHighException();
-		else
-			grade++;
-	}
-	catch(const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << "Grade Too High" << '\n';
-	}
-	
+	if (grade + 1 > 150)
+		throw GradeTooHighException();
+	else
+		grade++;
 }
 
 void Bureaucrat::incrementGrade()
 {
-	try
-	{
-		if (grade - 1 < 1)
-			throw GradeTooLowException();
-		else
-			grade--;
-	}
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << "Grade Too Low" << '\n';
-	}
+	if (grade - 1 < 1)
+		throw GradeTooLowException();
+	else
+		grade--;
 }
 
 void Bureaucrat::signForm(AForm & form) const

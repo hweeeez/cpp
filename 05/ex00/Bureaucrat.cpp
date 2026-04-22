@@ -8,21 +8,11 @@ Bureaucrat::Bureaucrat() : name("joe"), grade(0)
 Bureaucrat::Bureaucrat(const std::string _name, const unsigned int _grade) : name(_name)
 {
 	//std::cout << "Parameterized Constructor" << '\n';
-	//try
-	//{
-		if (grade > 150)
-			throw Bureaucrat::GradeTooLowException();
-		else if (grade < 1)
-			throw Bureaucrat::GradeTooHighException();
-	//}
-	// catch(const Bureaucrat::GradeTooLowException& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
-	// catch(const Bureaucrat::GradeTooHighException& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
+	if (_grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (_grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+
 	grade = _grade;
 }
 
@@ -65,33 +55,18 @@ std::ostream& operator<<(std::ostream &out, const Bureaucrat& Bureaucrat)
 
 void Bureaucrat::decrementGrade()
 {
-	//try
-	//{
 		if (grade + 1 > 150)
 			throw Bureaucrat::GradeTooLowException();
 		else
 			grade++;
-	//}
-	// catch(const Bureaucrat::GradeTooLowException& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
-	
 }
 
 void Bureaucrat::incrementGrade()
 {
-	//try
-	//{
-		if (grade - 1 < 1)
-			throw Bureaucrat::GradeTooHighException();
-		else
-			grade--;
-	//}
-	// catch(const Bureaucrat::GradeTooHighException& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
+	if (grade - 1 < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else
+		grade--;
 }
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()

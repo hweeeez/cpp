@@ -7,20 +7,13 @@ Form::Form() : name("wow"), is_signed(false), requiredSignGrade(20), requiredExe
 
 Form::Form(std::string _name, int _requiredSignGrade, int _requiredExecGrade) : name(_name), is_signed(false), requiredSignGrade(_requiredSignGrade), requiredExecGrade(_requiredExecGrade)
 {
-	try
+	if (_requiredSignGrade > 150 || _requiredExecGrade > 150)
 	{
-		if (_requiredSignGrade > 150 || _requiredExecGrade > 150)
-		{
-			throw GradeTooLowException();
-		}
-		else if (_requiredSignGrade < 1 || _requiredExecGrade < 1)
-		{
-			throw GradeTooHighException();
-		}
+		throw GradeTooLowException();
 	}
-	catch(const std::exception &e)
+	else if (_requiredSignGrade < 1 || _requiredExecGrade < 1)
 	{
-		std::cout << e.what() << std::endl;
+		throw GradeTooHighException();
 	}
 }
 
@@ -65,23 +58,26 @@ bool Form::getSigned() const
 
 void Form::beSigned(Bureaucrat bureaucrat)
 {
-	try
+	if (bureaucrat.getGrade() <= getRequiredSignGrade())
 	{
-		if (bureaucrat.getGrade() <= getRequiredSignGrade())
-		{
-			std::cout << bureaucrat << " signed " << *this << '\n';
-		}
-		else
-			throw GradeTooLowException();
+		std::cout << bureaucrat << " signed " << *this << '\n';
 	}
-	catch(const Form::GradeTooLowException &e)
-	{
-		std::cerr << bureaucrat << " couldn't sign " << *this << " because " << e.what() << '\n';
-	}
+	else
+		throw GradeTooLowException();	
 }
 
 std::ostream& operator<<(std::ostream &out, const Form& Form)
 {
 	out << Form.getName();
 	return out;
+}
+
+const char *Form::GradeTooHighException::what(void) const throw()
+{
+	return ("Form Grade Too High");
+}
+
+const char *Form::GradeTooLowException::what(void) const throw()
+{
+	return ("Form Grade Too Low");
 }
