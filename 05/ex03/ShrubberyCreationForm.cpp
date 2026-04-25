@@ -38,27 +38,26 @@ std::string ShrubberyCreationForm::getTarget() const
 void ShrubberyCreationForm::doAction() const
 {
 	std::string text;
+	std::string filename = (target + std::string("_shrubbery"));
+	std::ofstream file(filename.c_str());
    
-   
-    //while (std::getline(rfile, text))
 	text = "       _-_";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "    /~~   ~~\\";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "  /~~       ~~\\";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = " {             }";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = " \\  _-     -_  /";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "    ~  \\ /  ~";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "_- -   | | _- _";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "  _ -  | |   -_";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "      //  \\";
-	std::cout << text << '\n';
-    //rfile.close();
-
+	file << text << '\n';
+    file.close();
 }
