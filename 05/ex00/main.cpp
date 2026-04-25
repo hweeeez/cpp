@@ -2,9 +2,10 @@
 
 int main()
 {
+	Bureaucrat *c = NULL;
 	try
 	{
-		Bureaucrat *c = new Bureaucrat("ski", 150);
+		c = new Bureaucrat("ski", 150);
 		std::cout << *c << '\n';
 		c->decrementGrade();
 		std::cout << *c << '\n';
@@ -13,12 +14,13 @@ int main()
 	}
 	catch (const std::exception& e)
 	{
+		delete c;
 		std::cout << e.what() << '\n';
 	}
-
+	Bureaucrat* b = NULL;
 	try
 	{
-		Bureaucrat* b = new Bureaucrat("bro", 2);
+		b = new Bureaucrat("bro", 2);
 
 		std::cout << *b << '\n';
 		b->incrementGrade();
@@ -38,6 +40,7 @@ int main()
 	}
 	catch (const std::exception& e)
 	{
+		delete b;
 		std::cout << e.what() << '\n';
 	}
 

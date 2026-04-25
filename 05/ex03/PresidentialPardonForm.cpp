@@ -5,12 +5,12 @@ PresidentialPardonForm::PresidentialPardonForm()
 	std::cout << "PresidentialPardonForm Constructor" << '\n';
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string _target) : AForm("PresidentialPardonForm", 74, 45), target(_target)
+PresidentialPardonForm::PresidentialPardonForm(std::string _target) : Form("PresidentialPardonForm", 74, 45), target(_target)
 {
 
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : Form(other)
 {
 	std::cout << "PresidentialPardonForm Copy Constructor" << '\n';
 }

@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form() : name("wow"), is_signed(false), requiredSignGrade(20), requiredExecGrade(20)
+Form::Form() : name(""), is_signed(false), requiredSignGrade(0), requiredExecGrade(0)
 {
 
 }
@@ -33,17 +33,7 @@ Form& Form::operator=(const Form &other)
 
 Form::~Form()
 {
-	std::cout << "Destructor" << '\n';
-}
-
-int Form::getRequiredExecGrade() const
-{
-	return requiredExecGrade;
-}
-
-int Form::getRequiredSignGrade() const
-{
-	return requiredSignGrade;
+	std::cout << "Form Destructor" << '\n';
 }
 
 std::string Form::getName() const
@@ -56,14 +46,41 @@ bool Form::getSigned() const
 	return is_signed;
 }
 
-void Form::beSigned(Bureaucrat bureaucrat)
+int Form::getRequiredExecGrade() const
+{
+	return requiredExecGrade;
+}
+
+int Form::getRequiredSignGrade() const
+{
+	return requiredSignGrade;
+}
+
+void Form::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() <= getRequiredSignGrade())
 	{
-		std::cout << bureaucrat << " signed " << *this << '\n';
+		std::cout << bureaucrat << " signed " << *this << " successfully."<< '\n';
+		is_signed = true;
 	}
 	else
-		throw GradeTooLowException();	
+		throw GradeTooLowException();
+}
+
+void Form::doAction() const
+{
+
+}
+
+bool Form::execute(Bureaucrat const & executor) const
+{
+	if (is_signed && executor.getGrade() <= getRequiredExecGrade())
+	{
+		std::cout << "signed: " << is_signed << '\n';
+		doAction();
+		return true;
+	}
+	return false;
 }
 
 std::ostream& operator<<(std::ostream &out, const Form& Form)
@@ -74,10 +91,10 @@ std::ostream& operator<<(std::ostream &out, const Form& Form)
 
 const char *Form::GradeTooHighException::what(void) const throw()
 {
-	return ("Form Grade Too High");
+	return ("Grade Too High");
 }
 
 const char *Form::GradeTooLowException::what(void) const throw()
 {
-	return ("Form Grade Too Low");
+	return ("Grade Too Low");
 }

@@ -5,27 +5,38 @@
 
 int main()
 {
+	Bureaucrat* b = NULL;
+	PresidentialPardonForm* p = NULL;
+	ShrubberyCreationForm* shrub = NULL;
+	RobotomyRequestForm* r = NULL;
 	try
 	{
-		Bureaucrat* b = new Bureaucrat("bro", 3);
-		ShrubberyCreationForm* shrub = new ShrubberyCreationForm("home");
+		b = new Bureaucrat("bro", 3);
+		shrub = new ShrubberyCreationForm("home");
 
 		std::cout << *b << '\n';
 		b->signForm(*shrub);
 		shrub->execute(*b);
 
-		PresidentialPardonForm* p = new PresidentialPardonForm("Big Boi");
+		p = new PresidentialPardonForm("Big Boi");
 		b->signForm(*p);
 		p->execute(*b);
 
-		RobotomyRequestForm* r = new RobotomyRequestForm("bobbo");
+		r = new RobotomyRequestForm("bobbo");
 		b->signForm(*r);
 		r->execute(*b);
 		
 		delete b;
+		delete p;
+		delete r;
+		delete shrub;
 	}
 	catch (const std::exception &e)
 	{
+		delete p;
+		delete r;
+		delete b;
+		delete shrub;
 		std::cout << e.what() << '\n';	
 	}
 }

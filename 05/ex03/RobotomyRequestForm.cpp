@@ -7,12 +7,12 @@ RobotomyRequestForm::RobotomyRequestForm()
 	std::cout << "RobotomyRequestForm Constructor" << '\n';
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : Form(other)
 {
 	std::cout << "RobotomyRequestForm Copy Constructor" << '\n';
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string _target) : AForm("RobotomyRequestForm", 25, 5), target(_target)
+RobotomyRequestForm::RobotomyRequestForm(std::string _target) : Form("RobotomyRequestForm", 25, 5), target(_target)
 {
 
 }

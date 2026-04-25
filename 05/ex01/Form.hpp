@@ -10,18 +10,18 @@ class Form
 	private:
 		const std::string name;
 		bool is_signed;
-		const unsigned int requiredSignGrade;
-		const unsigned int requiredExecGrade;
+		const int requiredSignGrade;
+		const int requiredExecGrade;
 	public:
 		Form();
 		Form(std::string _name, int _requiredExecGrade, int _requiredSignGrade);
 		Form(const Form &other);
 		Form& operator=(const Form &other);
-		~Form();
+		virtual ~Form();
 		std::string getName() const;
 		bool getSigned() const;
-		unsigned int getRequiredSignGrade() const;
-		unsigned int getRequiredExecGrade() const;
+		int getRequiredSignGrade() const;
+		int getRequiredExecGrade() const;
 		class GradeTooHighException : public std::exception
 		{
 			public:

@@ -5,12 +5,12 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) : AForm("ShrubberyCreationForm", 145, 137), target(_target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) : Form("ShrubberyCreationForm", 145, 137), target(_target)
 {
 	std::cout << "ShrubberyCreationForm Constructor" << '\n';
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : Form(other)
 {
 	std::cout << "ShrubberyCreationForm Copy Constructor" << '\n';
 }

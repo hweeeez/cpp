@@ -1,11 +1,11 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : name("joe"), grade(0)
+Bureaucrat::Bureaucrat() : name("joe"), grade(1)
 {
 	std::cout << "Default Constructor" << '\n';
 }
 
-Bureaucrat::Bureaucrat(const std::string _name, const unsigned int _grade) : name(_name)
+Bureaucrat::Bureaucrat(const std::string _name, const int _grade) : name(_name)
 {
 	//std::cout << "Parameterized Constructor" << '\n';
 	if (_grade > 150)
@@ -16,7 +16,7 @@ Bureaucrat::Bureaucrat(const std::string _name, const unsigned int _grade) : nam
 	grade = _grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name)
 {
 	std::cout << "Copy Constructor" << '\n';
 	grade = other.grade;

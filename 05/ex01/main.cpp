@@ -3,26 +3,31 @@
 
 int main()
 {
-
+	Bureaucrat *c = NULL;
+	Form* form1 = NULL;
 	try
 	{
-		Bureaucrat *c = new Bureaucrat("ski", 150);
+		c = new Bureaucrat("ski", 150);
 		Form* form1 = new Form("Form", 120, 520);
 		c->signForm(form1);
 		c->decrementGrade();
 		std::cout << *c << '\n';
 
 		delete c;
+		delete form1;
 	}
 	catch(const std::exception& e)
 	{
+		delete c;
+		delete form1;
 		std::cout << e.what() << '\n';
 	}
-
+	Bureaucrat* b = NULL;
+	Form* form = NULL;
 	try
 	{
-		Bureaucrat* b = new Bureaucrat("bro", 2);
-		Form* form = new Form("Form", 20, 20);
+		b = new Bureaucrat("bro", 2);
+		form = new Form("Form", 20, 20);
 		std::cout << *b << '\n';
 		b->signForm(form);
 		b->incrementGrade();
@@ -38,9 +43,12 @@ int main()
 		d.incrementGrade();
 		std::cout << d << '\n';
 		delete b;
+		delete form;
 	}
 	catch (const std::exception &e)
 	{
+		delete b;
+		delete form;
 		std::cout << e.what() << '\n';
 	}
 }

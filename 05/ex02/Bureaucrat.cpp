@@ -1,14 +1,18 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "Form.hpp"
 
-Bureaucrat::Bureaucrat() : name("joe"), grade(0)
+Bureaucrat::Bureaucrat() : name("joe"), grade(1)
 {
 	std::cout << "Default Constructor" << '\n';
 }
 
-Bureaucrat::Bureaucrat(const std::string _name, const unsigned int _grade) : name(_name)
+Bureaucrat::Bureaucrat(const std::string _name, const int _grade) : name(_name)
 {
 	std::cout << "Parameterized Constructor" << '\n';
+	if (_grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (_grade < 1)
+		throw Bureaucrat::GradeTooHighException();
 	grade = _grade;
 }
 
@@ -38,7 +42,7 @@ std::string Bureaucrat::getName() const
 	return name;
 }
 
-unsigned int Bureaucrat::getGrade() const
+int Bureaucrat::getGrade() const
 {
 	return grade;
 }
@@ -51,41 +55,26 @@ std::ostream& operator<<(std::ostream &out, const Bureaucrat& Bureaucrat)
 
 void Bureaucrat::decrementGrade()
 {
-	try
-	{
-		if (grade + 1 > 150)
-			throw GradeTooHighException();
-		else
-			grade++;
-	}
-	catch(const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
+	if (grade + 1 > 150)
+		throw GradeTooLowException();
+	else
+		grade++;
 }
 
 void Bureaucrat::incrementGrade()
 {
-	try
-	{
-		if (grade - 1 < 1)
-			throw GradeTooLowException();
-		else
-			grade--;
-	}
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	if (grade - 1 < 1)
+		throw GradeTooHighException();
+	else
+		grade--;
 }
 
-void Bureaucrat::signForm(AForm & form) const
+void Bureaucrat::signForm(Form & form) const
 {
 	form.beSigned(*this);
 }
 
-void Bureaucrat::executeForm(AForm const & form) const
+void Bureaucrat::executeForm(Form const & form) const
 {
 	if ((form).execute(*this))
 	{

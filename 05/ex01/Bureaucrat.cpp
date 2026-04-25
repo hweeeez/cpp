@@ -1,12 +1,12 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-Bureaucrat::Bureaucrat() : name("joe"), grade(0)
+Bureaucrat::Bureaucrat() : name("joe"), grade(1)
 {
 	std::cout << "Default Constructor" << '\n';
 }
 
-Bureaucrat::Bureaucrat(const std::string _name, const unsigned int _grade) : name(_name)
+Bureaucrat::Bureaucrat(const std::string _name, const int _grade) : name(_name)
 {
 	std::cout << "Parameterized Constructor" << '\n';
 	if (_grade > 150)
@@ -42,7 +42,7 @@ std::string Bureaucrat::getName() const
 	return name;
 }
 
-unsigned int Bureaucrat::getGrade() const
+int Bureaucrat::getGrade() const
 {
 	return grade;
 }
@@ -55,18 +55,10 @@ std::ostream& operator<<(std::ostream &out, const Bureaucrat& Bureaucrat)
 
 void Bureaucrat::decrementGrade()
 {
-	//try
-	{
-		if (grade + 1 > 150)
-			throw GradeTooHighException();
-		else
-			grade++;
-	}
-	// catch(const Bureaucrat::GradeTooHighException& e)
-	// {
-	// 	std::cerr << "Grade Too High" << '\n';
-	// }
-	
+	if (grade + 1 > 150)
+		throw GradeTooLowException();
+	else
+		grade++;	
 }
 
 void Bureaucrat::incrementGrade()
@@ -74,7 +66,7 @@ void Bureaucrat::incrementGrade()
 	//try
 	{
 		if (grade - 1 < 1)
-			throw GradeTooLowException();
+			throw GradeTooHighException();
 		else
 			grade--;
 	}

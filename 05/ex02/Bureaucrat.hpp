@@ -2,7 +2,7 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
-#include "AForm.hpp"
+#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -11,12 +11,12 @@ class Bureaucrat
 		unsigned int grade;
 	public:
 		Bureaucrat();
-		Bureaucrat(const std::string _name, const unsigned int _grade);
+		Bureaucrat(const std::string _name, const int _grade);
 		Bureaucrat(const Bureaucrat &other);
 		Bureaucrat& operator=(const Bureaucrat &other);
 		~Bureaucrat();
 		std::string getName() const;
-		unsigned int getGrade() const;
+		int getGrade() const;
 		void incrementGrade();
 		void decrementGrade();
 	    class GradeTooHighException : public std::exception
@@ -29,8 +29,8 @@ class Bureaucrat
 			public:
 			virtual	const char* what() const throw();
 		};
-		void signForm(AForm & form) const;
-		void executeForm(AForm const & form) const;
+		void signForm(Form & form) const;
+		void executeForm(Form const & form) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
