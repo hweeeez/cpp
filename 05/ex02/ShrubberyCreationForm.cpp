@@ -5,12 +5,12 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) : Form("ShrubberyCreationForm", 145, 137), target(_target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) : AForm("ShrubberyCreationForm", 145, 137), target(_target)
 {
 	std::cout << "ShrubberyCreationForm Constructor" << '\n';
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : Form(other)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other)
 {
 	std::cout << "ShrubberyCreationForm Copy Constructor" << '\n';
 }
@@ -38,27 +38,26 @@ std::string ShrubberyCreationForm::getTarget() const
 void ShrubberyCreationForm::doAction() const
 {
 	std::string text;
+	std::string filename = (target + std::string("_shrubbery"));
+	std::ofstream file(filename.c_str());
    
-   
-    //while (std::getline(rfile, text))
 	text = "       _-_";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "    /~~   ~~\\";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "  /~~       ~~\\";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = " {             }";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = " \\  _-     -_  /";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "    ~  \\ /  ~";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "_- -   | | _- _";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "  _ -  | |   -_";
-	std::cout << text << '\n';
+	file << text << '\n';
 	text = "      //  \\";
-	std::cout << text << '\n';
-    //rfile.close();
-
+	file << text << '\n';
+    file.close();
 }

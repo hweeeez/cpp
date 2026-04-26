@@ -17,6 +17,7 @@ int main()
 		delete c;
 		std::cout << e.what() << '\n';
 	}
+	std::cout << '\n';
 	Bureaucrat* b = NULL;
 	try
 	{
@@ -43,7 +44,7 @@ int main()
 		delete b;
 		std::cout << e.what() << '\n';
 	}
-
+	std::cout << '\n';
 	try
 	{
 		Bureaucrat *e = new Bureaucrat("invalid", 156);
@@ -53,7 +54,7 @@ int main()
 	{
 		std::cout << e.what() << '\n';
 	}
-
+	std::cout << '\n';
 	try
 	{
 		Bureaucrat *f = new Bureaucrat("invalid", 0);

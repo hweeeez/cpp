@@ -14,7 +14,7 @@ class Form
 		const int requiredExecGrade;
 	public:
 		Form();
-		Form(std::string _name, int _requiredExecGrade, int _requiredSignGrade);
+		Form(std::string _name, int _requiredSignGrade, int _requiredExecGrade);
 		Form(const Form &other);
 		Form& operator=(const Form &other);
 		virtual ~Form();
@@ -32,7 +32,7 @@ class Form
 			public:
 			virtual	const char* what() const throw();
 		};
-		void beSigned(Bureaucrat bureaucrat);
+		void beSigned(const Bureaucrat& bureaucrat);
 };
 
 std::ostream& operator << (std::ostream& out, const Form &form);

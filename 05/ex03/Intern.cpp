@@ -24,29 +24,33 @@ Intern::~Intern()
 	std::cout << "Intern Destructor" << '\n';
 }
 
-Form* Intern::makeShrubberyForm(std::string target)
+AForm* Intern::makeShrubberyForm(std::string target)
 {
 	return new ShrubberyCreationForm(target);
 }
 
-Form* Intern::makePardonForm(std::string target)
+AForm* Intern::makePardonForm(std::string target)
 {
 	return new PresidentialPardonForm(target);
 }
 
-Form* Intern::makeRobotomyForm(std::string target)
+AForm* Intern::makeRobotomyForm(std::string target)
 {
 	return new RobotomyRequestForm(target);
 }
 
-Form* Intern::makeForm(std::string formname, std::string formtarget)
+AForm* Intern::makeForm(std::string formname, std::string formtarget)
 {
-	Form* (Intern::*FunctionArray[3])(std::string target) = { &Intern::makeRobotomyForm, &Intern::makeShrubberyForm, &Intern::makePardonForm};
+	AForm* (Intern::*FunctionArray[3])(std::string target) = { &Intern::makeRobotomyForm, &Intern::makeShrubberyForm, &Intern::makePardonForm};
     std::string nameArray[3] = { "robotomy request", "shrubbery creation", "presidential pardon"};	
     for (int i = 0; i < 3; ++i)
     {
         if (formname == nameArray[i])
-            return (*this.*FunctionArray[i])(formtarget);
+		{
+			std::cout << "Intern creates " << formname << '\n';
+			return (*this.*FunctionArray[i])(formtarget);
+		}
     }
+	throw AForm::FormDoesNotExistException();
 	return NULL;
 }
