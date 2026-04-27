@@ -3,20 +3,22 @@
 
 #include <iostream>
 #include <limits>
+#include <algorithm>
+#include <cstdlib>
 
 #define INTMAX std::numeric_limits<int>::max()
 #define INTMIN std::numeric_limits<int>::min()
 #define FLOATMAX std::numeric_limits<float>::max()
 #define FLOATMIN std::numeric_limits<int>::min()
-#define DOUBLEMAX std::numeric_limits<double:max()
+#define DOUBLEMAX std::numeric_limits<double>:max()
 #define DOUBLEMIN std::numeric_limits<int>::min()
 
 class ScalarConverter
 {
 	private:
+    ScalarConverter();
 	
 	public:
-    ScalarConverter();
     ScalarConverter(const ScalarConverter &other);
     ScalarConverter& operator=(const ScalarConverter &other);
     virtual ~ScalarConverter() = 0;

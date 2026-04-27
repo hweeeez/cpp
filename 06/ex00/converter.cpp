@@ -1,7 +1,6 @@
 #include "ScalarConverter.hpp"
 #include <sstream>
 #include <iomanip>
-#include <bits/stdc++.h>
 #include <string>
 //char int float double
 //single digit values - convert as char or int
@@ -53,6 +52,8 @@ void convertfromdouble(std::string input)
 		std::cout << "Not Displayable" << '\n';
 	}
 	std::cout << "int: " << static_cast<int>(res) << '\n';
+	std::cout << std::fixed;
+	std::cout << std::setprecision(1);
 	std::cout << "float: " << static_cast<float>(res) << "f"  << '\n';
 	std::cout << "double: " << (res) << '\n';
 }
