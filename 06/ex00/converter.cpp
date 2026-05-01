@@ -20,8 +20,9 @@ void convertfromint(std::string input)
 		std::cout << "int: " << static_cast<int>(res) << '\n';
 	else
 		std::cout << "int: " << "impossible" << '\n';
-	std::cout << "float: " << static_cast<float>(res) << ".0f" << '\n';
-	std::cout << "double: " << static_cast<double>(res) << ".0" << '\n';
+	std::cout  << std::fixed << std::setprecision(1);
+	std::cout << "float: " << static_cast<float>(res) << "f" << '\n';
+	std::cout << "double: " << static_cast<double>(res) << '\n';
 }
 
 void convertfromfloat(std::string input)
@@ -29,11 +30,11 @@ void convertfromfloat(std::string input)
 	float res = std::atof(input.c_str());
 	if (res >= 0 && res <= 127 && isprint(res))
 	{
-		std::cout << "char: '" << static_cast<char>(res) << "'" << '\n';
+		std::cout << "char: " << static_cast<char>(res) << "'" << '\n';
 	}
 	else
 	{
-		std::cout << "Not Displayable" << '\n';
+		std::cout << "char: Not Displayable" << '\n';
 	}
 	std::cout << "int: " << static_cast<int>(res) << '\n';
 	std::cout << "float: " << res << "f"  << '\n';
@@ -42,18 +43,16 @@ void convertfromfloat(std::string input)
 
 void convertfromdouble(std::string input)
 {
-	float res = std::atof(input.c_str());
+	double res = std::strtod(input.c_str(), NULL);
 	if (res >= 0 && res <= 127 && isprint(res))
 	{
 		std::cout << "char: '" << static_cast<char>(res) << "'" << '\n';
 	}
 	else
 	{
-		std::cout << "Not Displayable" << '\n';
+		std::cout << "char: Not Displayable" << '\n';
 	}
 	std::cout << "int: " << static_cast<int>(res) << '\n';
-	std::cout << std::fixed;
-	std::cout << std::setprecision(1);
 	std::cout << "float: " << static_cast<float>(res) << "f"  << '\n';
 	std::cout << "double: " << (res) << '\n';
 }
@@ -87,29 +86,28 @@ std::string gettype(std::string input)
 		}
 	}
 	if (std::count(input.begin(), input.end(), '.') > 1)
-		return "";
-	if (source.find("inf") != std::string::npos || source.find("nan") != std::string::npos)
-	{ 
-		if (source.find_last_of("f") == source.length() - 1)
-			return "float";
+		return "";	
+	if (source == "-inff" || source == "+inff" || source == "nanf")
+	{
+		return "float";
+	}
+	if (source == "-inf" || source == "+inf" || source == "nan")
+	{
 		return "double";
 	}
-	if (source.length() == 1)
-	{
-		if (isdigit(source[0]))
-		{
-			return "int";
-		}
-		else{
-			std::cout << "This is not a displayable character!" << '\n';
-			return NULL;
-		}
-	}
+	// if (source.length() == 1)
+	// {
+	// 	if (isdigit(source[0]))
+	// 	{
+	// 		return "int";
+	// 	}		
+	// }
 	if (ischar(input))
 		return "char";
-	else
-		std::cout << "This is not a displayable character!" << '\n';
-
+	// else{
+	// 	std::cout << "This is not a displayable character!" << '\n';
+	// 	return NULL;
+	// }
 	size_t e = source.find_first_not_of("0123456789");
     if (e > 0 && e != std::string::npos) 
 	{
