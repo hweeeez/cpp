@@ -7,11 +7,10 @@
 #include <ctime>
 #include <exception>
 
-Base* Base::generate(void)
+Base* generate(void)
 {
-	std::srand(std::time(0));
 	int rng = std::rand() % 3;
-	std::cout << rng << '\n';
+	//std::cout << rng << '\n';
 	if (rng == 0)
 		return new A();
 	if (rng == 1)
@@ -21,30 +20,53 @@ Base* Base::generate(void)
 	return NULL;
 }
 
-void Base::identify(Base* p)
+void identify(Base* p)
 {
 	A* a = dynamic_cast<A*>(p);
-	if (a != NULL)
+	if (a != NULL){
 		std::cout << "A" << '\n';
+		return;
+	}
 	B* b = dynamic_cast<B*>(p);
-	if (b != NULL)
+	if (b != NULL){
 		std::cout << "B" << '\n';
+		return;
+	}
 	C* c = dynamic_cast<C*>(p);
-	if (c != NULL)
+	if (c != NULL){
 		std::cout << "C" << '\n';
+		return;
+	}
 }
 
-void Base::identify(Base& p)
+void identify(Base& p)
 {
-	Base *base = &p;
-	identify(base);
+	try
+    { 
+        dynamic_cast<A&>(p); 
+		std::cout << "A" << '\n';
+    }
+    catch (std::exception &e){}
+    try{
+        dynamic_cast<B&>(p);
+        std::cout << "B" << '\n';
+    }
+	catch (std::exception &e){}
+	try{
+        dynamic_cast<C&>(p);
+		std::cout << "C" << '\n';
+    }catch (std::exception &e){}
+
 }
 
 int main()
 {
-	Base *b = new Base();
-	Base *r = b->generate();
+	std::srand(std::time(0));
 
-	b->identify(r);
-	b->identify(*r);
+	Base *r = generate();
+
+	identify(r);
+	identify(*r);
+
+	delete r;
 }

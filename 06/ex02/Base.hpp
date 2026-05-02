@@ -1,13 +1,19 @@
 #ifndef BASE_HPP
 #define BASE_HPP
 
+#include <iostream>
+#include <ctime>
+#include <stdlib.h>
+
 class Base
 {
+	private:
 	public:
 	virtual ~Base();
-	Base* generate(void);
-	void identify(Base *p);
-	void identify(Base& p);
 };
+
+Base* generate(void);
+void identify(Base *p);
+void identify(Base& p);
 
 #endif

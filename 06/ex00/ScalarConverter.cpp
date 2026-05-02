@@ -14,10 +14,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter &other)
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter &other)
 {
-	if (this != &other)
-	{
-
-	}
+	(void)other;
     return *this;
 }
 
@@ -36,13 +33,15 @@ void ScalarConverter::convert(std::string input)
 		std::cout << "invalid type" << '\n';
 	}
 	else{
-		std::cout << type << '\n';
+		//std::cout << type << '\n';
 		if (type == "int")
 			convertfromint(input);
 		if (type == "float")
 			convertfromfloat(input);
 		if (type == "double")
 			convertfromdouble(input);
+		if (type == "char")
+			convertfromchar(input);
 	}
 
 }

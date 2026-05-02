@@ -1,4 +1,4 @@
-NAME = converter
+NAME = serializer
 srcfiles := main.cpp Serializer.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98

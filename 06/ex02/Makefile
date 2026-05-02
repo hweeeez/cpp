@@ -1,4 +1,4 @@
-NAME = converter
+NAME = identify
 srcfiles := main.cpp Base.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
