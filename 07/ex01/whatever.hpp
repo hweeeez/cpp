@@ -3,11 +3,9 @@
 
 #include <iostream>
 
-//template <typename F>
-
-template<typename T> void iter(T *array, int arrayLength, void (*func)(T&))
+template<typename T, typename F> void iter(T *array, size_t arrayLength, F func)
 {
-	for (int i = 0; i < arrayLength; i++)
+	for (size_t i = 0; i < arrayLength; i++)
 	{
 		func(array[i]);
 	}

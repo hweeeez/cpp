@@ -2,6 +2,7 @@ NAME = convert
 srcfiles := main.cpp ScalarConverter.cpp converter.cpp
 objfiles := $(srcfiles:.cpp=.o)
 CFLAGS = -g -Wall -Werror -Wextra -std=c++98
+DEPS := $(objfiles:.o=.d)
 
 all: $(NAME)
 
