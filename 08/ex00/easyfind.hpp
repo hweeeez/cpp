@@ -15,17 +15,14 @@ class ElementNotFoundException: public std::exception
     }
 };
 
-template <typename T> typename T::value_type easyfind(T& x, int y)
+template <typename T> typename T::iterator easyfind(T& x, int y)
 {
-    //for (int i = 0; i < (int)x.size(); i++)
+    typename T::iterator iter;
+    iter = (std::find(x.begin(), x.end(), y));
+    if (iter != x.end())
     {
-        typename T::iterator iter;
-        iter = (std::find(x.begin(), x.end(), y));
-        if (iter != x.end())
-        {
-            return *iter;
-        }
-    }
+        return iter;
+    }    
     throw ElementNotFoundException();
 } 
 

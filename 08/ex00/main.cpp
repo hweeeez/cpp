@@ -11,49 +11,61 @@ int main()
     a.push_back(10);
     
     try {
-        int result = easyfind(a, 10);
-        std::cout << "Found: " << result << std::endl;
-    } catch (const ElementNotFoundException& e) {
-        std::cout << e.what() << std::endl;
+        std::list<int>::iterator result = easyfind(a, 10);
+        std::cout << "Found: " << *result << std::endl;
     }
+    catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
     try {
-        int result = easyfind(a, 3);
-        std::cout << "Found: " << result << std::endl;
-    } catch (const ElementNotFoundException& e) {
-        std::cout << e.what() << std::endl;
+        std::list<int>::iterator result = easyfind(a, 3);
+        std::cout << "Found: " << *result << std::endl;
     }
+    catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
 
     std::vector<int> v;
     v.push_back(8);
     v.push_back(4);
     v.push_back(9);
     try {
-        int result = easyfind(v, 10);
-        std::cout << "Found: " << result << std::endl;
-    } catch (const ElementNotFoundException& e) {
-        std::cout << e.what() << std::endl;
+        std::vector<int>::iterator result = easyfind(v, 10);
+        std::cout << "Found: " << *result << std::endl;
     }
+    catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
     try {
-        int result = easyfind(v, 9);
-        std::cout << "Found: " << result << std::endl;
-    } catch (const ElementNotFoundException& e) {
-        std::cout << e.what() << std::endl;
+        std::vector<int>::iterator result = easyfind(v, 9);
+        std::cout << "Found: " << *result << std::endl;
     }
+    catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
 
     std::deque<char> d;
     d.push_back('c');
     d.push_back('a');
     d.push_back('t');
     try {
-        char result = easyfind(d, 'a');
-        std::cout << "Found: " << result << std::endl;
+        std::deque<char>::iterator result = easyfind(d, 'a');
+        std::cout << "Found: " << *result << std::endl;
+        result--;
+        std::cout << "Iter--: " << *result << std::endl;
     } catch (const ElementNotFoundException& e) {
         std::cout << e.what() << std::endl;
     }
     try {
-        char result = easyfind(d, 't');
-        std::cout << "Found: " << result << std::endl;
-    } catch (const ElementNotFoundException& e) {
-        std::cout << e.what() << std::endl;
+        std::deque<char>::iterator result = easyfind(d, 't');
+        std::cout << "Found: " << *result << std::endl;
     }
+    catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
 }
